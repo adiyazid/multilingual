@@ -14,7 +14,6 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class EditLoginDetailsScreen extends StatefulWidget {
   const EditLoginDetailsScreen({Key? key}) : super(key: key);
-
   @override
   _EditLoginDetailsScreenState createState() => _EditLoginDetailsScreenState();
 }
