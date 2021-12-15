@@ -611,7 +611,6 @@ class _LearnerBottomNavigationBarState extends State<LearnerBottomNavigationBar>
         themeColor = themeData.colorScheme.secondary;
         break;
     }
-
     ColorTween? colorTween;
     switch (widget.type) {
       case LearnerBottomNavigationBarType.fixed:
