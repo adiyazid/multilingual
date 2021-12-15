@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:learningapp/learner/Screens/Flash%20Card/flash.card.widget.dart';
 import 'package:learningapp/learner/Screens/al_fatihah/list.languages.screen.dart';
 import 'package:learningapp/learner/Screens/others/learner_walk_through.dart';
 import 'package:learningapp/learner/Screens/al_fatihah/quizzes.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
                     onWillPop: () async => false, child: LearnerLogin()),
                 '/register': (context) => WillPopScope(
                     onWillPop: () async => false, child: const LearnerSignUp()),
+                '/flashcard': (context) => MyHomePage('Flash Card'),
               },
               localeResolutionCallback: (locale, supportedLocales) => locale,
               locale: Locale(appStore.selectedLanguageCode),

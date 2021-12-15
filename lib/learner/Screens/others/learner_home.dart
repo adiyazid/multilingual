@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learningapp/learner/model/LearnerModels.dart';
+import 'package:learningapp/learner/model/learner_models.dart';
 import 'package:learningapp/learner/utils/LearnerColors.dart';
 import 'package:learningapp/learner/utils/LearnerConstant.dart';
 import 'package:learningapp/learner/utils/learner_data_generator.dart';
@@ -145,33 +145,36 @@ class LearnerCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: <Widget>[
-        Container(
-          width: MediaQuery.of(context).size.width,
-          alignment: Alignment.center,
-          margin: const EdgeInsets.only(left: 16, right: 16),
-          child: Column(
-            children: <Widget>[
-              Container(
-                decoration: boxDecoration(bgColor: learner_white, radius: 12),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        model.img,
-                        height: 150,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                    ],
+        InkWell(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            alignment: Alignment.center,
+            margin: const EdgeInsets.only(left: 16, right: 16),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  decoration: boxDecoration(bgColor: learner_white, radius: 12),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          model.img,
+                          height: 150,
+                          width: MediaQuery.of(context).size.width,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: text(model.name)),
-            ],
+                const SizedBox(height: 4),
+                Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    child: text(model.name)),
+              ],
+            ),
           ),
+          onTap: () => Navigator.pushNamed(context, model.path),
         ),
       ],
     );

@@ -7,6 +7,7 @@ class LearnerWalk {
 class LearnerCategoryModel {
   var img = "";
   var name = "";
+  var path="";
 }
 
 class LearnerFeaturedModel {

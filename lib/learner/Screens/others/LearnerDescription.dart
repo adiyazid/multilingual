@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:learningapp/learner/model/LearnerModels.dart';
+import 'package:learningapp/learner/model/learner_models.dart';
 import 'package:learningapp/learner/utils/LearnerColors.dart';
 import 'package:learningapp/learner/utils/LearnerConstant.dart';
 import 'package:learningapp/learner/utils/learner_data_generator.dart';

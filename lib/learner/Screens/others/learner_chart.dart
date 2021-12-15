@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:learningapp/learner/model/LearnerModels.dart';
+import 'package:learningapp/learner/model/learner_models.dart';
 import 'package:learningapp/learner/utils/LearnerColors.dart';
 import 'package:learningapp/learner/utils/LearnerConstant.dart';
 import 'package:learningapp/learner/utils/learner_data_generator.dart';

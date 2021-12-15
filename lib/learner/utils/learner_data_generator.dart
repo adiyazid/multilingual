@@ -1,4 +1,4 @@
-import 'package:learningapp/learner/model/LearnerModels.dart';
+import 'package:learningapp/learner/model/learner_models.dart';
 import 'package:learningapp/learner/utils/LearnerColors.dart';
 import 'package:learningapp/learner/utils/learner_images.dart';
 
@@ -25,7 +25,8 @@ List<LearnerCategoryModel> learnerGetCategories() {
 
   var category = LearnerCategoryModel();
   category.img = learner_ic_bag;
-  category.name = "Business";
+  category.name = "Flash Card";
+  category.path = '/flashcard';
 
   var category2 = LearnerCategoryModel();
   category2.img = learner_ic_pencil_scale;

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learningapp/Widget/loading.dart';
+import 'package:learningapp/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:learningapp/Provider/user.provider.dart';
-import 'package:learningapp/Splash.screen1.dart';
 import 'package:learningapp/Splash.screen2.dart';
 
 class LandingPage extends StatefulWidget {
@@ -20,7 +20,7 @@ class _LandingPageState extends State<LandingPage> {
 
     if (appUser.user != null) {
       print('Logged in');
-      return SplashScreen1();
+      return SplashScreen();
     } else {
       print('Not logged in');
       return SplashScreen2();

@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:learningapp/learner/Screens/others/learner_login.dart';
 import 'package:learningapp/learner/Screens/others/learner_sign_up.dart';
-import 'package:learningapp/learner/model/LearnerModels.dart';
+import 'package:learningapp/learner/model/learner_models.dart';
 import 'package:learningapp/learner/utils/LearnerColors.dart';
 import 'package:learningapp/learner/utils/LearnerConstant.dart';
 import 'package:learningapp/learner/utils/learner_data_generator.dart';
