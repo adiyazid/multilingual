@@ -18,7 +18,6 @@ class EditLoginDetailsScreen extends StatefulWidget {
   @override
   _EditLoginDetailsScreenState createState() => _EditLoginDetailsScreenState();
 }
-
 class _EditLoginDetailsScreenState extends State<EditLoginDetailsScreen> {
   String? _pass;
   String? _pass2;
