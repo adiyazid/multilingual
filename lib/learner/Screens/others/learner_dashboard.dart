@@ -32,7 +32,6 @@ class _LearnerDashboardState extends State<LearnerDashboard> {
     super.initState();
     selectedIndex = 0;
   }
-
   void _onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
