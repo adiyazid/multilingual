@@ -35,15 +35,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static get person {
-    List pronoun = [
-      '(A Male)',
+    List person = [
+      '(A male)',
       '(2 males)',
       '(3 or more males)',
       '(A female)',
       '(2 females)',
       '(3 or more females)',
-      '(A Male)',
-      '(2 Male)',
+      '(A male)',
+      '(2 males)',
       '(3 or more males)',
       '(A female)',
       '(2 female)',
@@ -51,12 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
       '',
       '',
     ];
-    return pronoun;
+    return person;
   }
 
   static get arab {
-    List pronoun = [
-      ' هُوَ',
+    List arab = [
+      'هُوَ ',
       'هُمَا',
       'هُمْ ',
       'هِيَ ',
@@ -71,14 +71,41 @@ class _MyHomePageState extends State<MyHomePage> {
       'أَنَا',
       'نـَحْنُ ',
     ];
-    return pronoun;
+    return arab;
+  }
+
+  static get image {
+    List image = [
+      'assets/png/animal/bear.png',
+      'assets/png/animal/camel.png',
+      'assets/png/animal/cat.png',
+      'assets/png/animal/chicken.png',
+      'assets/png/animal/cow.png',
+      'assets/png/animal/dog.png',
+      'assets/png/animal/elephent.png',
+      'assets/png/animal/horse.png',
+      'assets/png/animal/lion.png',
+      'assets/png/animal/sheep.png',
+      'assets/png/animal/whale.png',
+      'assets/png/occupation/architek.png',
+      'assets/png/occupation/chef.png',
+      'assets/png/occupation/doctor.png',
+    ];
+    return image;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blueGrey,
         appBar: AppBar(
-          title: Text(widget.title),
+          elevation: 5,
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+          title: Text(
+            widget.title,
+            style: TextStyle(color: Colors.black, fontSize: 30),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(48.0),
@@ -105,17 +132,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Expanded(flex: 5, child: Image.asset(image[index])),
+                    SizedBox(height: 5),
                     Text.rich(TextSpan(
-                        text: pronoun[index],
+                        text: 'Words ',
                         style: TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,
                             fontSize: 30),
-                        children: [
+                        children: const [
                           TextSpan(
-                            text: person[index],
+                            text: '& ',
                             style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
+                          TextSpan(
+                            text: 'Sentence',
+                            style: TextStyle(
+                                color: Colors.blue,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30),
                           )
@@ -123,19 +159,47 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 )),
             backWidget: Container(
-              height: 200,
-              width: 200,
-              child: Center(
-                child: Text(
-                  arab[index],
-                  style: TextStyle(
-                      color: Colors.deepPurple,
-                      fontSize: 50,
-                      fontWeight: FontWeight.w900),
-                ),
+              height: 500,
+              width: 500,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 6,
+                    child: Center(
+                      child: Text(
+                        arab[index],
+                        style: TextStyle(
+                            color: Colors.deepPurple,
+                            fontSize: 50,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: Center(
+                      child: Text.rich(TextSpan(
+                          text: pronoun[index],
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
+                          children: [
+                            TextSpan(
+                              text: person[index],
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30),
+                            )
+                          ])),
+                    ),
+                  ),
+                ],
               ),
             ),
-            width: 300,
+            width: 400,
             height: 400,
           ));
 }

@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
+              SizedBox(
                 width: 100,
                 child: Image.asset("assets/applogo.png", fit: BoxFit.cover),
               ),

@@ -5,7 +5,6 @@ import 'package:learningapp/learner/Screens/al_fatihah/list.languages.screen.dar
 import 'package:learningapp/learner/Screens/others/learner_walk_through.dart';
 import 'package:learningapp/learner/Screens/al_fatihah/quizzes.dart';
 import 'package:provider/provider.dart';
-
 import 'Landing.page.dart';
 import 'Provider/user.provider.dart';
 import 'learner/Screens/al_fatihah/alfatihah.home.screen.dart';
