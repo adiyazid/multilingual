@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:learningapp/Landing.page.dart';
 import 'package:learningapp/Provider/user.provider.dart';
-//import 'package:learningapp/learner/Screens/others/LearnerAchievement.dart';
 import 'package:learningapp/learner/Screens/others/learner_favourites.dart';
 import 'package:learningapp/learner/utils/LearnerColors.dart';
 import 'package:learningapp/learner/utils/LearnerConstant.dart';
@@ -13,13 +15,13 @@ import 'package:nb_utils/src/extensions/widget_extensions.dart';
 import 'package:learningapp/leaderboard.screen.dart';
 import 'package:learningapp/edit.login.details.screen.dart';
 
+
 class LearnerProfile extends StatefulWidget {
   const LearnerProfile({Key? key}) : super(key: key);
 
   @override
   _LearnerProfileState createState() => _LearnerProfileState();
 }
-
 
 
 class _LearnerProfileState extends State<LearnerProfile> {
@@ -29,6 +31,8 @@ class _LearnerProfileState extends State<LearnerProfile> {
     super.initState();
     AppUser();
   }
+
+  PickedFile? imageFile=null;
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +49,39 @@ class _LearnerProfileState extends State<LearnerProfile> {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: learner_white, width: 4)),
-                      child: CircleAvatar(
-                          backgroundImage: const AssetImage(learner_ic_Profile),
-                          radius: 50),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: learner_white, width: 4)),
+                        child: GestureDetector(
+                            onTap:() {
+                              _showPicker(context);
+                            },
+                            child: CircleAvatar(
+                              //backgroundImage: const AssetImage(learner_ic_Profile),
+                              radius: 55,
+                              backgroundColor: Colors.yellow,
+                              child: imageFile != null
+                                  ? ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.file(File(imageFile!.path),
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.fitHeight,),
+                              )
+                                  : Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.circular(50)
+                                  ),
+                                  width: 100,
+                                  height: 100,
+                                  child: Icon(
+                                    Icons.camera_alt,
+                                    color: Colors.grey[800],
+                                  )
+                              ),
+                            )
+                        )
                     ),
 
 
@@ -111,7 +142,7 @@ class _LearnerProfileState extends State<LearnerProfile> {
                         );
                       },
                     ),
-                    // InkWell(
+                    /* InkWell(
                     //   child: learnerOption(
                     //       learner_ic_user, learner_lbl_my_friends),
                     //   onTap: () {
@@ -121,7 +152,7 @@ class _LearnerProfileState extends State<LearnerProfile> {
                     //           builder: (context) => LearnerMyFriends()),
                     //     );
                     //   },
-                    // ),
+                    // ),*/
                     InkWell(
                       child: learnerOption(
                           learner_ic_achievements, lbl_leaderboard),
@@ -181,57 +212,113 @@ class _LearnerProfileState extends State<LearnerProfile> {
       ),
     );
   }
-}
 
-Widget learnerAward(var icon, var bgColor) {
-  return Container(
-    margin: const EdgeInsets.only(right: 10),
-    width: 35,
-    height: 35,
-    decoration: BoxDecoration(shape: BoxShape.circle, color: bgColor),
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Image.asset(
-        icon,
-      ),
-    ),
-  );
-}
-
-Widget learnerOption(var icon, var heading) {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Container(
-              decoration: boxDecoration(
-                  bgColor: learner_white, radius: 8, showShadow: true),
-              width: 40,
-              height: 40,
-              padding: const EdgeInsets.all(10),
-              child: SvgPicture.asset(
-                icon,
-                height: 40,
-                width: 40,
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: Wrap(
+                children: <Widget>[
+                  ListTile(
+                      leading: Icon(Icons.photo_library),
+                      title: Text('Photo Library'),
+                      onTap: () {
+                        _openGallery(context);
+                        Navigator.of(context).pop();
+                      }),
+                  ListTile(
+                    leading: Icon(Icons.photo_camera),
+                    title: Text('Camera'),
+                    onTap: () {
+                      _openCamera(context);
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              width: 16,
-            ),
-            text(heading,
-                textColor: learner_textColorPrimary,
-                fontSize: textSizeLargeMedium,
-                fontFamily: fontSemibold),
-          ],
+          );
+        }
+    );
+  }
+
+
+  Widget learnerAward(var icon, var bgColor) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      width: 35,
+      height: 35,
+      decoration: BoxDecoration(shape: BoxShape.circle, color: bgColor),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset(
+          icon,
         ),
-        const Icon(
-          Icons.keyboard_arrow_right,
-          color: learner_textColorSecondary,
-        ),
-      ],
-    ),
-  );
+      ),
+    );
+  }
+
+  Widget learnerOption(var icon, var heading) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Container(
+                decoration: boxDecoration(
+                    bgColor: learner_white, radius: 8, showShadow: true),
+                width: 40,
+                height: 40,
+                padding: const EdgeInsets.all(10),
+                child: SvgPicture.asset(
+                  icon,
+                  height: 40,
+                  width: 40,
+                ),
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              text(heading,
+                  textColor: learner_textColorPrimary,
+                  fontSize: textSizeLargeMedium,
+                  fontFamily: fontSemibold),
+            ],
+          ),
+          const Icon(
+            Icons.keyboard_arrow_right,
+            color: learner_textColorSecondary,
+          ),
+        ],
+      ),
+    );
+
+  }
+
+//pick from gallery
+  void _openGallery(BuildContext context) async{
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery ,
+    );
+    setState(() {
+      imageFile = pickedFile! as PickedFile?;
+    });
+
+    Navigator.pop(context);
+  }
+
+  //pick from camera
+  void _openCamera(BuildContext context)  async{
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera ,
+    );
+    setState(() {
+      imageFile = pickedFile! as PickedFile?;
+    });
+    Navigator.pop(context);
+  }
 }
