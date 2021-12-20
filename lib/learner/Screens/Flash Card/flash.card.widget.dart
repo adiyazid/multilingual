@@ -169,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Center(
                       child: Text(
                         arab[index],
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.deepPurple,
                             fontSize: 50,
@@ -179,23 +180,28 @@ class _MyHomePageState extends State<MyHomePage> {
                   Expanded(
                     flex: 4,
                     child: Center(
-                      child: Text.rich(TextSpan(
-                          text: pronoun[index],
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30),
-                          children: [
-                            TextSpan(
-                              text: person[index],
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30),
-                            )
-                          ])),
-                    ),
-                  ),
+                        child: RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: pronoun[index],
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
+                          TextSpan(
+                            text: person[index],
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    )),
+                  )
                 ],
               ),
             ),
