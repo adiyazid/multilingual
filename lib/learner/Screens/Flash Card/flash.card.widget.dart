@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ])),
                   ],
                 )),
-            backWidget: Container(
+            backWidget: SizedBox(
               height: 500,
               width: 500,
               child: Column(
@@ -178,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Expanded(
-                    flex: 4,
+                    flex: 7,
                     child: Center(
                         child: RichText(
                       text: TextSpan(
