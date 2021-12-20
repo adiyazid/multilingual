@@ -7,6 +7,7 @@ import 'package:learningapp/learner/Screens/al_fatihah/quizzes.dart';
 import 'package:provider/provider.dart';
 import 'Landing.page.dart';
 import 'Provider/user.provider.dart';
+import 'learner/Screens/Flash Card/flash.card.widget2.dart';
 import 'learner/Screens/al_fatihah/alfatihah.home.screen.dart';
 import 'learner/Screens/others/learner_sign_up.dart';
 import 'learner/Screens/others/learner_dashboard.dart';
@@ -59,7 +60,8 @@ class MyApp extends StatelessWidget {
                     onWillPop: () async => false, child: LearnerLogin()),
                 '/register': (context) => WillPopScope(
                     onWillPop: () async => false, child: const LearnerSignUp()),
-                '/flashcard': (context) => MyHomePage('Flash Card'),
+                '/flashcard': (context) => FlashCardScreen('Flash Card'),
+                '/flashcard2': (context) => ColorTapCountPage(),
               },
               localeResolutionCallback: (locale, supportedLocales) => locale,
               locale: Locale(appStore.selectedLanguageCode),

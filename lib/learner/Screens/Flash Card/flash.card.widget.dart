@@ -4,16 +4,16 @@ import 'package:flash_card/flash_card.dart';
 import 'package:flutter/material.dart';
 
 /// UI flash card, commonly found in language teaching to children
-class MyHomePage extends StatefulWidget {
-  const MyHomePage(this.title, {Key? key}) : super(key: key);
+class FlashCardScreen extends StatefulWidget {
+  const FlashCardScreen(this.title, {Key? key}) : super(key: key);
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<FlashCardScreen> createState() => _FlashCardScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _FlashCardScreenState extends State<FlashCardScreen> {
   static get pronoun {
     List pronoun = [
       'He ',

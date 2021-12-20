@@ -25,12 +25,13 @@ List<LearnerCategoryModel> learnerGetCategories() {
 
   var category = LearnerCategoryModel();
   category.img = learner_ic_bag;
-  category.name = "Flash Card";
+  category.name = "Flash Card Design 1";
   category.path = '/flashcard';
 
   var category2 = LearnerCategoryModel();
   category2.img = learner_ic_pencil_scale;
-  category2.name = "Design";
+  category2.name = "Flash Card Design 2";
+  category2.path = '/flashcard2';
 
   var category3 = LearnerCategoryModel();
   category3.img = learner_ic_crome;

@@ -379,6 +379,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.7"
+  flip_board:
+    dependency: "direct main"
+    description:
+      name: flip_board
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.1"
   flutter:
     dependency: "direct main"
     description: flutter
