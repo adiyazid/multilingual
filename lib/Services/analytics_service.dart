@@ -2,4 +2,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
 class AnalyticsService {
-  final
+  final FirebaseAnalytics _analytic = FirebaseAnalytics()
+    
+  FirebaseAnalyticsObserver getAnalyticsObserver() =>
+    FirebaseAnalyticsObserver(analytics: _analytics);
+}
