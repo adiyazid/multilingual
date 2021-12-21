@@ -1,52 +1,110 @@
-import 'dart:async';
+library flash_card;
 
-import 'package:flip_board/flip_widget.dart';
+import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
-class ColorTapCountPage extends StatelessWidget {
-  const ColorTapCountPage({Key? key}) : super(key: key);
+/// UI flash card, commonly found in language teaching to children
+class FlashCardScreen2 extends StatefulWidget {
+  /// constructor: Default height 200dp, width 200dp, duration  500 milliseconds
+  const FlashCardScreen2(
+      {required this.title,
+      Key? key,
+      this.duration = const Duration(milliseconds: 500),
+      this.height = 200,
+      this.width = 200})
+      : super(key: key);
+
+  final String title;
+
+  /// flip time
+  final Duration duration;
+
+  /// height of card
+  final double height;
+
+  /// width of card
+  final double width;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Color Tap Count')),
-      body: Center(
-        child: _PronounTapCount(const [
-          'He ',
-          'They ',
-          'They ',
-          'She ',
-          'They ',
-          'They ',
-          'You ',
-          'You ',
-          'You ',
-          'You ',
-          'You ',
-          'You ',
-          'I ',
-          'We ',
-        ]),
-      ),
-    );
+  _FlashCardScreen2State createState() => _FlashCardScreen2State();
+}
+
+class _FlashCardScreen2State extends State<FlashCardScreen2>
+    with SingleTickerProviderStateMixin {
+  /// controller flip animation
+  late AnimationController _controller;
+
+  /// animation for flip from front to back
+  late Animation<double> _frontAnimation;
+
+  ///animation for flip from back  to front
+  late Animation<double> _backAnimation;
+
+  /// state of card is front or back
+  bool isFrontVisible = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _frontAnimation = TweenSequence(
+      <TweenSequenceItem<double>>[
+        TweenSequenceItem<double>(
+          tween: Tween(begin: 0.0, end: math.pi / 2)
+              .chain(CurveTween(curve: Curves.linear)),
+          weight: 50.0,
+        ),
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(math.pi / 2),
+          weight: 50.0,
+        ),
+      ],
+    ).animate(_controller);
+
+    _backAnimation = TweenSequence(
+      <TweenSequenceItem<double>>[
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(math.pi / 2),
+          weight: 50.0,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween(begin: -math.pi / 2, end: 0.0)
+              .chain(CurveTween(curve: Curves.linear)),
+          weight: 50.0,
+        ),
+      ],
+    ).animate(_controller);
   }
-}
-
-class _PronounTapCount extends StatefulWidget {
-  _PronounTapCount(this.pronoun);
-
-  List pronoun = [];
 
   @override
-  _PronounTapCountState createState() => _PronounTapCountState();
-}
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
-class _PronounTapCountState extends State<_PronounTapCount> {
-  final _colorTapCounts = <String, int>{};
-  final _flipController = StreamController<ProNounCount>();
-  bool onFlip = true;
-  bool isFlip = false;
-  var i;
+  int i = 0;
+
+  static get pronoun {
+    List pronoun = [
+      'He ',
+      'They ',
+      'They ',
+      'She ',
+      'They ',
+      'They ',
+      'You ',
+      'You ',
+      'You ',
+      'You ',
+      'You ',
+      'You ',
+      'I ',
+      'We ',
+    ];
+    return pronoun;
+  }
 
   static get person {
     List person = [
@@ -66,6 +124,26 @@ class _PronounTapCountState extends State<_PronounTapCount> {
       '',
     ];
     return person;
+  }
+
+  static get arab {
+    List arab = [
+      'هُوَ ',
+      'هُمَا',
+      'هُمْ ',
+      'هِيَ ',
+      'هُمَا',
+      'هُنَّ ',
+      'أَنْتَ  ',
+      'أَنْتُمَا',
+      'أَنُتُم',
+      'أَنْتِ  ',
+      'أَنْتُمَّا',
+      'أَنْتـُنًّ ',
+      'أَنَا',
+      'نـَحْنُ ',
+    ];
+    return arab;
   }
 
   static get image {
@@ -89,176 +167,320 @@ class _PronounTapCountState extends State<_PronounTapCount> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    for (final pronoun in widget.pronoun) {
-      _colorTapCounts[pronoun] = 0;
-    }
-  }
-
-  @override
-  void dispose() {
-    _flipController.close();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => Stack(
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        elevation: 5,
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+        title: Text(
+          widget.title,
+          style: TextStyle(color: Colors.black, fontSize: 30),
+        ),
+      ),
+      body: Stack(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         children: [
-          GridView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              crossAxisCount: 14,
-            ),
-            itemCount: widget.pronoun.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Material(
-                shape: CircleBorder(),
-                color: Colors.white,
-                child: InkWell(
-                  onTap: (onFlip)
-                      ? () => _onTap(index)
-                      : () {
+          Positioned(
+              top: 20.0,
+              left: 20.0,
+              right: 0.0,
+              bottom: 20.0,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
+                    itemCount: 7,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
                           setState(() {
-                            onFlip = true;
-                            isFlip = false;
+                            i = index;
                           });
-                          _flipController.add(ProNounCount(i));
+                          if (isFrontVisible) {
+                            _controller.forward();
+                            isFrontVisible = false;
+                            Timer(Duration(seconds: 3), _turnBack);
+                          } else {
+                            _controller.reverse();
+                            isFrontVisible = true;
+                          }
                         },
-                  customBorder: CircleBorder(),
-                  child: SizedBox(
-                    width: 100.0,
-                    height: 130.0,
-                    child: Center(
-                        child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                                text: widget.pronoun[index],
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
                                 children: [
-                                  TextSpan(
-                                    text: person[index],
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
+                                  Text(arab[index],
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.purple,
+                                          fontWeight: FontWeight.bold)),
+                                  RichText(
+                                    textAlign: TextAlign.center,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            text: pronoun[index],
+                                            style: TextStyle(
+                                                fontSize: 25,
+                                                color: Colors.redAccent,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: person[index],
+                                            style: TextStyle(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
                                     ),
                                   ),
-                                ]))),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
-              );
-            },
-          ),
-          // const SizedBox(height: 80.0),
-          Container(
-              alignment: Alignment.center,
-              child: GestureDetector(
-                child: _tapCountWidget,
-                onTap: (isFlip)
-                    ? () {
-                        setState(() {
-                          onFlip = true;
-                          isFlip = false;
-                        });
-                        _flipController.add(ProNounCount(i));
-                      }
-                    : null,
               )),
+          Positioned(
+              top: 20.0,
+              left: 0.0,
+              right: 20.0,
+              bottom: 20.0,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
+                    itemCount: 7,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            i = index;
+                          });
+                          if (isFrontVisible) {
+                            _controller.forward();
+                            isFrontVisible = false;
+                            Timer(Duration(seconds: 3), _turnBack);
+                          } else {
+                            _controller.reverse();
+                            isFrontVisible = true;
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text(arab[index + 7],
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.purple,
+                                          fontWeight: FontWeight.bold)),
+                                  SizedBox(height: 20),
+                                  RichText(
+                                    textAlign: TextAlign.center,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            text: pronoun[index + 7],
+                                            style: TextStyle(
+                                                fontSize: 25,
+                                                color: Colors.redAccent,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: person[index + 7],
+                                            style: TextStyle(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )),
+          Container(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              onTap: _toggleSide,
+              child: AnimatedCard(
+                animation: _frontAnimation,
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(20),
+                      color: Colors.yellowAccent),
+                  height: 500,
+                  width: 500,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Expanded(
+                        flex: 6,
+                        child: Center(
+                          child: Text(
+                            'Akulu',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.deepPurple,
+                                fontSize: 50,
+                                fontWeight: FontWeight.w900),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                width: 400,
+                height: 400,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              onTap: _toggleSide,
+              child: AnimatedCard(
+                animation: _backAnimation,
+                child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadiusDirectional.circular(20),
+                        color: Colors.greenAccent),
+                    height: 500,
+                    width: 500,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(flex: 5, child: Image.asset(image[i])),
+                          SizedBox(height: 5),
+                          Text.rich(TextSpan(
+                              text: 'Words ',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30),
+                              children: const [
+                                TextSpan(
+                                  text: '& ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30),
+                                ),
+                                TextSpan(
+                                  text: 'Translation',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30),
+                                )
+                              ])),
+                        ],
+                      ),
+                    )),
+                width: 400,
+                height: 400,
+              ),
+            ),
+          ),
         ],
-      );
-
-  void _onTap(int? pronoun) {
-    setState(() {
-      i = pronoun;
-      onFlip = false;
-      isFlip = true;
-    });
-    _flipController.add(ProNounCount(pronoun!));
-  }
-
-  Widget get _tapCountWidget => FlipWidget(
-        flipType: FlipType.spinFlip,
-        itemStream: _flipController.stream,
-        itemBuilder: _flashCardBuilder,
-        flipDirection: AxisDirection.right,
-        flipDuration: const Duration(milliseconds: 1200),
-      );
-
-  Widget _flashCardBuilder(BuildContext _, ProNounCount? colorCount) {
-    return _container(
-      color: Colors.greenAccent,
-      no: colorCount?.count ?? 0,
+      ),
     );
   }
 
-  Widget _container({required Color color, required int no}) => Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: color,
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(4.0),
-        ),
-        width: 250,
-        height: 300,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Visibility(
-              child: Expanded(child: Center(child: Image.asset(image[no]))),
-              visible: isFlip,
-            ),
-            Visibility(
-              child: Text(
-                'Akulu',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 50),
-              ),
-              visible: onFlip,
-            ),
-            SizedBox(height: 5),
-            Visibility(
-              child: Center(
-                child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                        text: 'Sentence ',
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                        children: const [
-                          TextSpan(
-                            text: '& ',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                          ),
-                          TextSpan(
-                            text: 'Translate',
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                          )
-                        ])),
-              ),
-              visible: isFlip,
-            ),
-            SizedBox(height: 5),
-          ],
-        ),
-      );
+  /// when user onTap, It will run function
+  void _toggleSide() {
+    if (isFrontVisible) {
+      _controller.forward();
+      isFrontVisible = false;
+      Timer(Duration(seconds: 3), _turnBack);
+    } else {
+      _controller.reverse();
+      isFrontVisible = true;
+    }
+  }
+
+  void _turnBack() {
+    if (isFrontVisible) {
+      _controller.forward();
+      isFrontVisible = false;
+    } else {
+      _controller.reverse();
+      isFrontVisible = true;
+    }
+  }
 }
 
-class ProNounCount {
-  const ProNounCount(this.count);
+class AnimatedCard extends StatelessWidget {
+  const AnimatedCard(
+      {required this.child,
+      required this.animation,
+      required this.height,
+      required this.width,
+      Key? key})
+      : super(key: key);
 
-  final int count;
+  final Widget child;
+  final Animation<double> animation;
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: _builder,
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Card(
+            elevation: 4,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            borderOnForeground: false,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: child,
+            )),
+      ),
+    );
+  }
+
+  Widget _builder(BuildContext context, Widget? child) {
+    var transform = Matrix4.identity();
+    transform.setEntry(3, 2, 0.001);
+    transform.rotateY(animation.value);
+    return Transform(
+      transform: transform,
+      alignment: Alignment.center,
+      child: child,
+    );
+  }
 }

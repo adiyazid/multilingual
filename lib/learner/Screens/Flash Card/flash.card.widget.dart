@@ -14,6 +14,8 @@ class FlashCardScreen extends StatefulWidget {
 }
 
 class _FlashCardScreenState extends State<FlashCardScreen> {
+  int i = 0;
+
   static get pronoun {
     List pronoun = [
       'He ',
@@ -126,44 +128,54 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
       14,
       (index) => FlashCard(
             key: Key(index.toString()),
-            frontWidget: SizedBox(
-                height: 200,
-                width: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(flex: 5, child: Image.asset(image[index])),
-                    SizedBox(height: 5),
-                    Text.rich(TextSpan(
-                        text: 'Words ',
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                        children: const [
-                          TextSpan(
-                            text: '& ',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                          ),
-                          TextSpan(
-                            text: 'Sentence',
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                          )
-                        ])),
-                  ],
+            frontWidget: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(20),
+                    color: Colors.greenAccent),
+                height: 500,
+                width: 500,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(flex: 5, child: Image.asset(image[index])),
+                      SizedBox(height: 5),
+                      Text.rich(TextSpan(
+                          text: 'Words ',
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
+                          children: const [
+                            TextSpan(
+                              text: '& ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30),
+                            ),
+                            TextSpan(
+                              text: 'Translation',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30),
+                            )
+                          ])),
+                    ],
+                  ),
                 )),
-            backWidget: SizedBox(
+            backWidget: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadiusDirectional.circular(5),
+                  color: Colors.yellowAccent),
               height: 500,
               width: 500,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+
                   Expanded(
                     flex: 6,
                     child: Center(

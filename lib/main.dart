@@ -61,7 +61,9 @@ class MyApp extends StatelessWidget {
                 '/register': (context) => WillPopScope(
                     onWillPop: () async => false, child: const LearnerSignUp()),
                 '/flashcard': (context) => FlashCardScreen('Flash Card'),
-                '/flashcard2': (context) => ColorTapCountPage(),
+                '/flashcard2': (context) => FlashCardScreen2(
+                      title: 'Flash Card',
+                    ),
               },
               localeResolutionCallback: (locale, supportedLocales) => locale,
               locale: Locale(appStore.selectedLanguageCode),
