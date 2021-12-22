@@ -4,6 +4,8 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:rive/rive.dart';
 
 /// UI flash card, commonly found in language teaching to children
 class FlashCardScreen2 extends StatefulWidget {
@@ -44,10 +46,96 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
 
   /// state of card is front or back
   bool isFrontVisible = true;
+  Artboard? artboard;
+  RiveAnimationController? controller;
+  late final artboard1,
+      artboard2,
+      artboard3,
+      artboard4,
+      artboard5,
+      artboard6,
+      artboard7,
+      artboard8,
+      artboard9,
+      artboard10,
+      artboard11,
+      artboard12,
+      artboard13,
+      artboard14;
 
   @override
   void initState() {
     super.initState();
+    rootBundle.load("fruits/Apple.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard1 = file.mainArtboard;
+      artboard1.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Banana.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard2 = file.mainArtboard;
+      artboard2.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Durian.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard3 = file.mainArtboard;
+      artboard3.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Grape.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard4 = file.mainArtboard;
+      artboard4.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Mango.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard5 = file.mainArtboard;
+      artboard5.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Orange.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard6 = file.mainArtboard;
+      artboard6.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Papaya.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard7 = file.mainArtboard;
+      artboard7.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Pear.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard8 = file.mainArtboard;
+      artboard8.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Pineapple.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard9 = file.mainArtboard;
+      artboard9.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Strawberry.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard10 = file.mainArtboard;
+      artboard10.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Watermelon.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard11 = file.mainArtboard;
+      artboard11.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Watermelon.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard12 = file.mainArtboard;
+      artboard12.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Watermelon.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard13 = file.mainArtboard;
+      artboard13.addController(controller = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Watermelon.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard14 = file.mainArtboard;
+      artboard14.addController(controller = SimpleAnimation("splash"));
+    });
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _frontAnimation = TweenSequence(
       <TweenSequenceItem<double>>[
@@ -77,6 +165,8 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
       ],
     ).animate(_controller);
   }
+
+  apple() {}
 
   @override
   void dispose() {
@@ -146,26 +236,6 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
     return arab;
   }
 
-  static get image {
-    List image = [
-      'assets/png/animal/bear.png',
-      'assets/png/animal/camel.png',
-      'assets/png/animal/cat.png',
-      'assets/png/animal/chicken.png',
-      'assets/png/animal/cow.png',
-      'assets/png/animal/dog.png',
-      'assets/png/animal/elephent.png',
-      'assets/png/animal/horse.png',
-      'assets/png/animal/lion.png',
-      'assets/png/animal/sheep.png',
-      'assets/png/animal/whale.png',
-      'assets/png/occupation/architek.png',
-      'assets/png/occupation/chef.png',
-      'assets/png/occupation/doctor.png',
-    ];
-    return image;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -199,6 +269,41 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                         onTap: () {
                           setState(() {
                             i = index;
+                            if (i == 0) {
+                              setState(() {
+                                artboard = artboard1;
+                              });
+                            }
+                            if (i == 1) {
+                              setState(() {
+                                artboard = artboard2;
+                              });
+                            }
+                            if (i == 2) {
+                              setState(() {
+                                artboard = artboard3;
+                              });
+                            }
+                            if (i == 3) {
+                              setState(() {
+                                artboard = artboard4;
+                              });
+                            }
+                            if (i == 4) {
+                              setState(() {
+                                artboard = artboard5;
+                              });
+                            }
+                            if (i == 5) {
+                              setState(() {
+                                artboard = artboard6;
+                              });
+                            }
+                            if (i == 6) {
+                              setState(() {
+                                artboard = artboard7;
+                              });
+                            }
                           });
                           if (isFrontVisible) {
                             _controller.forward();
@@ -213,8 +318,13 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  style: BorderStyle.solid,
+                                  width: 5,
+                                  color: Colors.blueAccent),
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -222,9 +332,10 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                                   Text(arab[index],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 25,
+                                          fontSize: 35,
                                           color: Colors.purple,
                                           fontWeight: FontWeight.bold)),
+                                  SizedBox(height: 20),
                                   RichText(
                                     textAlign: TextAlign.center,
                                     text: TextSpan(
@@ -232,13 +343,13 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                                         TextSpan(
                                             text: pronoun[index],
                                             style: TextStyle(
-                                                fontSize: 25,
+                                                fontSize: 20,
                                                 color: Colors.redAccent,
                                                 fontWeight: FontWeight.bold)),
                                         TextSpan(
                                             text: person[index],
                                             style: TextStyle(
-                                                fontSize: 25,
+                                                fontSize: 20,
                                                 fontWeight: FontWeight.bold)),
                                       ],
                                     ),
@@ -269,7 +380,42 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            i = index;
+                            i = index + 7;
+                            if (i == 7) {
+                              setState(() {
+                                artboard = artboard8;
+                              });
+                            }
+                            if (i == 8) {
+                              setState(() {
+                                artboard = artboard9;
+                              });
+                            }
+                            if (i == 9) {
+                              setState(() {
+                                artboard = artboard10;
+                              });
+                            }
+                            if (i == 10) {
+                              setState(() {
+                                artboard = artboard11;
+                              });
+                            }
+                            if (i == 11) {
+                              setState(() {
+                                artboard = artboard12;
+                              });
+                            }
+                            if (i == 12) {
+                              setState(() {
+                                artboard = artboard13;
+                              });
+                            }
+                            if (i == 13) {
+                              setState(() {
+                                artboard = artboard14;
+                              });
+                            }
                           });
                           if (isFrontVisible) {
                             _controller.forward();
@@ -284,8 +430,13 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  style: BorderStyle.solid,
+                                  width: 5,
+                                  color: Colors.cyanAccent),
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -293,7 +444,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                                   Text(arab[index + 7],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 25,
+                                          fontSize: 35,
                                           color: Colors.purple,
                                           fontWeight: FontWeight.bold)),
                                   SizedBox(height: 20),
@@ -304,13 +455,13 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                                         TextSpan(
                                             text: pronoun[index + 7],
                                             style: TextStyle(
-                                                fontSize: 25,
+                                                fontSize: 20,
                                                 color: Colors.redAccent,
                                                 fontWeight: FontWeight.bold)),
                                         TextSpan(
                                             text: person[index + 7],
                                             style: TextStyle(
-                                                fontSize: 25,
+                                                fontSize: 20,
                                                 fontWeight: FontWeight.bold)),
                                       ],
                                     ),
@@ -375,35 +526,48 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                     width: 500,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(flex: 5, child: Image.asset(image[i])),
-                          SizedBox(height: 5),
-                          Text.rich(TextSpan(
-                              text: 'Words ',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30),
-                              children: const [
-                                TextSpan(
-                                  text: '& ',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                ),
-                                TextSpan(
-                                  text: 'Translation',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                )
-                              ])),
-                        ],
-                      ),
+                      child: (artboard != null)
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                    flex: 5,
+                                    child: Rive(
+                                      artboard: artboard!,
+                                      fit: BoxFit.cover,
+                                    )),
+                                SizedBox(height: 5),
+                                Text.rich(TextSpan(
+                                    text: 'Words ',
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30),
+                                    children: const [
+                                      TextSpan(
+                                        text: '& ',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 30),
+                                      ),
+                                      TextSpan(
+                                        text: 'Translation',
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 30),
+                                      )
+                                    ])),
+                              ],
+                            )
+                          : Center(
+                              child: Text(
+                                'Eat',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 40),
+                              ),
+                            ),
                     )),
                 width: 400,
                 height: 400,
