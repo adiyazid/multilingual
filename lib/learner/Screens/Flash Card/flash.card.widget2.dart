@@ -47,7 +47,21 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
   /// state of card is front or back
   bool isFrontVisible = true;
   Artboard? artboard;
-  RiveAnimationController? controller;
+  RiveAnimationController? controller1,
+      controller2,
+      controller3,
+      controller4,
+      controller5,
+      controller6,
+      controller7,
+      controller8,
+      controller9,
+      controller10,
+      controller11,
+      controller12,
+      controller13,
+      controller14;
+
   late final artboard1,
       artboard2,
       artboard3,
@@ -66,75 +80,75 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
   @override
   void initState() {
     super.initState();
-    rootBundle.load("fruits/Apple.riv").then((data) {
+    rootBundle.load("fruits/Papaya.riv").then((data) {
       final file = RiveFile.import(data);
       artboard1 = file.mainArtboard;
-      artboard1.addController(controller = SimpleAnimation("splash"));
+      artboard1.addController(controller1 = SimpleAnimation("splash"));
     });
-    rootBundle.load("fruits/Banana.riv").then((data) {
+    rootBundle.load("fruits/Pear.riv").then((data) {
       final file = RiveFile.import(data);
       artboard2 = file.mainArtboard;
-      artboard2.addController(controller = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Durian.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard3 = file.mainArtboard;
-      artboard3.addController(controller = SimpleAnimation("splash"));
+      artboard2.addController(controller2 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Grape.riv").then((data) {
       final file = RiveFile.import(data);
+      artboard3 = file.mainArtboard;
+      artboard3.addController(controller3 = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Durian.riv").then((data) {
+      final file = RiveFile.import(data);
       artboard4 = file.mainArtboard;
-      artboard4.addController(controller = SimpleAnimation("splash"));
+      artboard4.addController(controller4 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Mango.riv").then((data) {
       final file = RiveFile.import(data);
       artboard5 = file.mainArtboard;
-      artboard5.addController(controller = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Orange.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard6 = file.mainArtboard;
-      artboard6.addController(controller = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Papaya.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard7 = file.mainArtboard;
-      artboard7.addController(controller = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Pear.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard8 = file.mainArtboard;
-      artboard8.addController(controller = SimpleAnimation("splash"));
+      artboard5.addController(controller5 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Pineapple.riv").then((data) {
       final file = RiveFile.import(data);
+      artboard6 = file.mainArtboard;
+      artboard6.addController(controller6 = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Apple.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard7 = file.mainArtboard;
+      artboard7.addController(controller7 = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Orange.riv").then((data) {
+      final file = RiveFile.import(data);
+      artboard8 = file.mainArtboard;
+      artboard8.addController(controller8 = SimpleAnimation("splash"));
+    });
+    rootBundle.load("fruits/Banana.riv").then((data) {
+      final file = RiveFile.import(data);
       artboard9 = file.mainArtboard;
-      artboard9.addController(controller = SimpleAnimation("splash"));
+      artboard9.addController(controller9 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Strawberry.riv").then((data) {
       final file = RiveFile.import(data);
       artboard10 = file.mainArtboard;
-      artboard10.addController(controller = SimpleAnimation("splash"));
+      artboard10.addController(controller10 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Watermelon.riv").then((data) {
       final file = RiveFile.import(data);
       artboard11 = file.mainArtboard;
-      artboard11.addController(controller = SimpleAnimation("splash"));
+      artboard11.addController(controller11 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Watermelon.riv").then((data) {
       final file = RiveFile.import(data);
       artboard12 = file.mainArtboard;
-      artboard12.addController(controller = SimpleAnimation("splash"));
+      artboard12.addController(controller12 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Watermelon.riv").then((data) {
       final file = RiveFile.import(data);
       artboard13 = file.mainArtboard;
-      artboard13.addController(controller = SimpleAnimation("splash"));
+      artboard13.addController(controller13 = SimpleAnimation("splash"));
     });
     rootBundle.load("fruits/Watermelon.riv").then((data) {
       final file = RiveFile.import(data);
       artboard14 = file.mainArtboard;
-      artboard14.addController(controller = SimpleAnimation("splash"));
+      artboard14.addController(controller14 = SimpleAnimation("splash"));
     });
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _frontAnimation = TweenSequence(
@@ -166,15 +180,38 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
     ).animate(_controller);
   }
 
-  apple() {}
+  int i = 0;
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  /// when user onTap, It will run function
+  void _toggleSide() {
+    if (isFrontVisible) {
+      _controller.forward();
+      setState(() {
+        isFrontVisible = false;
+      });
+
+      Timer(Duration(seconds: 10), _turnBack);
+    } else {
+      _controller.reverse();
+      setState(() {
+        isFrontVisible = true;
+      });
+    }
   }
 
-  int i = 0;
+  void _turnBack() {
+    if (isFrontVisible) {
+      _controller.forward();
+      setState(() {
+        isFrontVisible = false;
+      });
+    } else {
+      _controller.reverse();
+      setState(() {
+        isFrontVisible = true;
+      });
+    }
+  }
 
   static get pronoun {
     List pronoun = [
@@ -194,6 +231,46 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
       'We ',
     ];
     return pronoun;
+  }
+
+  static get words {
+    List words = [
+      'eats ',
+      'eat ',
+      'eat ',
+      'eats ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+    ];
+    return words;
+  }
+
+  static get foods {
+    List foods = [
+      'rice',
+      'bread',
+      'grapes',
+      'chicken',
+      'fish',
+      'pineapple',
+      'apples',
+      'oranges',
+      'bananas',
+      'pasta',
+      'eggs',
+      'watermelon',
+      'salad',
+      'potatoes',
+    ];
+    return foods;
   }
 
   static get person {
@@ -216,9 +293,9 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
     return person;
   }
 
-  static get arab {
-    List arab = [
-      'هُوَ ',
+  static get arabPronoun {
+    List arabPronoun = [
+      ' هُوَ ',
       'هُمَا',
       'هُمْ ',
       'هِيَ ',
@@ -233,8 +310,54 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
       'أَنَا',
       'نـَحْنُ ',
     ];
-    return arab;
+    return arabPronoun;
   }
+
+  static get arabWords {
+    List arabWords = [
+      ' يأكُلُ ',
+      ' يأكُلانِ ',
+      ' يَأكُلونَ ',
+      ' تَأكلُ  ',
+      ' تَأكلانِ  ',
+      ' تَأكُلنَ',
+      ' تَأْكُلُ',
+      ' تَأْكُلَانِ',
+      ' تَأْكُلُونَ',
+      ' تَأْكُلِي',
+      ' تَأْكُلَانِ ',
+      ' تَأْكُلْنَ ',
+      ' آكُلُ ',
+      ' أَكَلْنَا',
+    ];
+    return arabWords;
+  }
+
+  static get arabFoods {
+    List arabFoods = [
+      ' الأَرُزَّ ',
+      ' الخُبْزَ ',
+      ' العِنَبَ  ',
+      ' الدَجَاجَ ',
+      'السَمَكَ  ',
+      '  الأَنَانَاسََ    ',
+      '  التُفَّاحَ ',
+      '  البُرْتُقَالَ  ',
+      ' المَوْزَ ',
+      ' المَعُكُرُونَةَ ',
+      ' البَيْضَ   ',
+      ' البِطِّيْخَ ',
+      ' السَلَطَةَ ',
+      ' البَطَاطِسَ    ',
+    ];
+    return arabFoods;
+  }
+
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -308,7 +431,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                           if (isFrontVisible) {
                             _controller.forward();
                             isFrontVisible = false;
-                            Timer(Duration(seconds: 3), _turnBack);
+                            Timer(Duration(seconds: 10), _turnBack);
                           } else {
                             _controller.reverse();
                             isFrontVisible = true;
@@ -329,7 +452,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text(arab[index],
+                                  Text(arabPronoun[index],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 35,
@@ -420,7 +543,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                           if (isFrontVisible) {
                             _controller.forward();
                             isFrontVisible = false;
-                            Timer(Duration(seconds: 3), _turnBack);
+                            Timer(Duration(seconds: 10), _turnBack);
                           } else {
                             _controller.reverse();
                             isFrontVisible = true;
@@ -441,7 +564,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text(arab[index + 7],
+                                  Text(arabPronoun[index + 7],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 35,
@@ -495,7 +618,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                         flex: 6,
                         child: Center(
                           child: Text(
-                            'Akulu',
+                            'Present Tense',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.deepPurple,
@@ -521,7 +644,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadiusDirectional.circular(20),
-                        color: Colors.greenAccent),
+                        color: Colors.white12),
                     height: 500,
                     width: 500,
                     child: Padding(
@@ -536,25 +659,50 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                                       artboard: artboard!,
                                       fit: BoxFit.cover,
                                     )),
-                                SizedBox(height: 5),
+                                Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Text.rich(TextSpan(
+                                      text: arabPronoun[i],
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 45),
+                                      children: [
+                                        TextSpan(
+                                          text: arabWords[i],
+                                          style: TextStyle(
+                                              color: Colors.indigo,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 45),
+                                        ),
+                                        TextSpan(
+                                          text: arabFoods[i],
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 45),
+                                        )
+                                      ])),
+                                ),
+                                SizedBox(height: 15),
                                 Text.rich(TextSpan(
-                                    text: 'Words ',
+                                    text: pronoun[i],
                                     style: TextStyle(
-                                        color: Colors.red,
+                                        color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 30),
-                                    children: const [
+                                    children: [
                                       TextSpan(
-                                        text: '& ',
+                                        text: words[i],
                                         style: TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.indigo,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 30),
                                       ),
                                       TextSpan(
-                                        text: 'Translation',
+                                        text: foods[i],
                                         style: TextStyle(
-                                            color: Colors.blue,
+                                            color: Colors.green,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 30),
                                       )
@@ -577,28 +725,6 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
         ],
       ),
     );
-  }
-
-  /// when user onTap, It will run function
-  void _toggleSide() {
-    if (isFrontVisible) {
-      _controller.forward();
-      isFrontVisible = false;
-      Timer(Duration(seconds: 3), _turnBack);
-    } else {
-      _controller.reverse();
-      isFrontVisible = true;
-    }
-  }
-
-  void _turnBack() {
-    if (isFrontVisible) {
-      _controller.forward();
-      isFrontVisible = false;
-    } else {
-      _controller.reverse();
-      isFrontVisible = true;
-    }
   }
 }
 
