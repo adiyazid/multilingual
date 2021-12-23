@@ -1,4 +1,4 @@
-# learningapp
+# Multilingual Daily Web App
 
 A new Flutter project.
 
