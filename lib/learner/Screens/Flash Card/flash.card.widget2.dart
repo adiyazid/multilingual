@@ -353,11 +353,11 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
     return arabFoods;
   }
 
-  // @override
-  // void dispose() {
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
