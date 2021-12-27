@@ -36,6 +36,46 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
     return pronoun;
   }
 
+  static get words {
+    List words = [
+      'eats ',
+      'eat ',
+      'eat ',
+      'eats ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+      'eat ',
+    ];
+    return words;
+  }
+
+  static get foods {
+    List foods = [
+      'rice',
+      'bread',
+      'grapes',
+      'chicken',
+      'fish',
+      'pineapple',
+      'apples',
+      'oranges',
+      'bananas',
+      'pasta',
+      'eggs',
+      'watermelon',
+      'salad',
+      'potatoes',
+    ];
+    return foods;
+  }
+
   static get person {
     List person = [
       '(A male)',
@@ -56,9 +96,9 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
     return person;
   }
 
-  static get arab {
-    List arab = [
-      'هُوَ ',
+  static get arabPronoun {
+    List arabPronoun = [
+      ' هُوَ ',
       'هُمَا',
       'هُمْ ',
       'هِيَ ',
@@ -73,7 +113,47 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
       'أَنَا',
       'نـَحْنُ ',
     ];
-    return arab;
+    return arabPronoun;
+  }
+
+  static get arabWords {
+    List arabWords = [
+      ' يأكُلُ ',
+      ' يأكُلانِ ',
+      ' يَأكُلونَ ',
+      ' تَأكلُ  ',
+      ' تَأكلانِ  ',
+      ' تَأكُلنَ',
+      ' تَأْكُلُ',
+      ' تَأْكُلَانِ',
+      ' تَأْكُلُونَ',
+      ' تَأْكُلِي',
+      ' تَأْكُلَانِ ',
+      ' تَأْكُلْنَ ',
+      ' آكُلُ ',
+      ' أَكَلْنَا',
+    ];
+    return arabWords;
+  }
+
+  static get arabFoods {
+    List arabFoods = [
+      ' الأَرُزَّ ',
+      ' الخُبْزَ ',
+      ' العِنَبَ  ',
+      ' الدَجَاجَ ',
+      'السَمَكَ  ',
+      '  الأَنَانَاسََ    ',
+      '  التُفَّاحَ ',
+      '  البُرْتُقَالَ  ',
+      ' المَوْزَ ',
+      ' المَعُكُرُونَةَ ',
+      ' البَيْضَ   ',
+      ' البِطِّيْخَ ',
+      ' السَلَطَةَ ',
+      ' البَطَاطِسَ    ',
+    ];
+    return arabFoods;
   }
 
   static get image {
@@ -112,14 +192,16 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
         body: Padding(
           padding: const EdgeInsets.all(48.0),
           child: GridView.builder(
+            shrinkWrap: false,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              crossAxisSpacing: 5.0,
+              mainAxisSpacing: 5.0,
+            ),
             itemCount: flashCard.length,
             itemBuilder: (context, index) {
               return flashCard[index];
             },
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 19 / 20,
-              crossAxisCount: 4,
-            ),
           ),
         ));
   }
@@ -131,7 +213,7 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
             frontWidget: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadiusDirectional.circular(20),
-                    color: Colors.greenAccent),
+                    color: Colors.white),
                 height: 500,
                 width: 500,
                 child: Padding(
@@ -140,29 +222,61 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(flex: 5, child: Image.asset(image[index])),
-                      SizedBox(height: 5),
-                      Text.rich(TextSpan(
-                          text: 'Words ',
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30),
-                          children: const [
-                            TextSpan(
-                              text: '& ',
+                      SizedBox(height: 15),
+                      Expanded(
+                        flex: 3,
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text.rich(TextSpan(
+                              text: arabPronoun[index],
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 30),
-                            ),
-                            TextSpan(
-                              text: 'Translation',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30),
-                            )
-                          ])),
+                                  fontSize: 45),
+                              children: [
+                                TextSpan(
+                                  text: arabWords[index],
+                                  style: TextStyle(
+                                      color: Colors.indigo,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 45),
+                                ),
+                                TextSpan(
+                                  text: arabFoods[index],
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 45),
+                                )
+                              ])),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Expanded(
+                        flex: 3,
+                        child: Text.rich(TextSpan(
+                            text: pronoun[index],
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                            children: [
+                              TextSpan(
+                                text: words[index],
+                                style: TextStyle(
+                                    color: Colors.indigo,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30),
+                              ),
+                              TextSpan(
+                                text: foods[index],
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30),
+                              )
+                            ])),
+                      ),
                     ],
                   ),
                 )),
@@ -175,12 +289,11 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
                   Expanded(
                     flex: 6,
                     child: Center(
                       child: Text(
-                        arab[index],
+                        arabPronoun[index],
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.deepPurple,
