@@ -50,9 +50,6 @@ class LearnerBottomNavigationState extends State<LearnerBottomNavigation> {
               icon: Learner_ic_home_navigation,
             ),
             LearnerBottomNavigationBarItem(
-              icon: Learner_ic_search_navigation,
-            ),
-            LearnerBottomNavigationBarItem(
               icon: Learner_ic_chart_navigation,
             ),
             LearnerBottomNavigationBarItem(

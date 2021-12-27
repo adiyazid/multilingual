@@ -80,6 +80,8 @@ dependencies:
   flash_card: ^0.0.5
   flip_board: ^0.6.1
   lint: ^1.5.3
+  image_picker: ^0.8.4+4
+  permission_handler: ^8.3.0
 
   #clustering_google_maps: ^0.1.2
   #image_picker_gallery_camera: 0.1.6

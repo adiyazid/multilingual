@@ -27,13 +27,13 @@ List<LearnerCategoryModel> learnerGetCategories() {
   category.img = learner_ic_bag;
   category.name = "Flash Card Design 1";
   category.path = '/flashcard';
-
+/*
   var category2 = LearnerCategoryModel();
   category2.img = learner_ic_pencil_scale;
   category2.name = "Flash Card Design 2";
   category2.path = '/flashcard2';
 
-  var category3 = LearnerCategoryModel();
+ var category3 = LearnerCategoryModel();
   category3.img = learner_ic_crome;
   category3.name = "Economy";
 
@@ -56,16 +56,16 @@ List<LearnerCategoryModel> learnerGetCategories() {
   var category8 = LearnerCategoryModel();
   category8.img = learner_ic_cup;
   category8.name = "Medals";
-
+*/
   list.add(category);
-  list.add(category2);
+  /* list.add(category2);
   list.add(category3);
   list.add(category4);
-  list.add(category5);
+  list.add(category5); CATEGORY SECTION
   list.add(category6);
   list.add(category7);
   list.add(category8);
-
+*/
   return list;
 }
 
@@ -86,7 +86,7 @@ List<LearnerFeaturedModel> learnerGetFavourites() {
   featured2.strikePrice = "";
   featured2.type = "Occupation";
   featured2.path = '/test';
-
+/*
   LearnerFeaturedModel featured5 = LearnerFeaturedModel();
   featured5.img = learner_ic_comingsoon;
   featured5.name = "Coming Soon";
@@ -121,14 +121,16 @@ List<LearnerFeaturedModel> learnerGetFavourites() {
   featured7.price = "Unknown";
   featured7.strikePrice = "";
   featured7.type = "None";
+FEATURED SECTION */
 
   list.add(featured);
   list.add(featured2);
-  list.add(featured5);
+  /* list.add(featured5);
   list.add(featured6);
   list.add(featured3);
   list.add(featured4);
   list.add(featured7);
+   */
   return list;
 }
 

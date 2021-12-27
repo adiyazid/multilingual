@@ -22,7 +22,6 @@ class _LearnerDashboardState extends State<LearnerDashboard> {
   var selectedIndex = 0;
   var pages = [
     LearnerHome(),
-    LearnerSearch(),
     LearnerChart(),
     LearnerProfile(),
   ];
@@ -39,10 +38,8 @@ class _LearnerDashboardState extends State<LearnerDashboard> {
       if (selectedIndex == 0) {
         print("Home");
       } else if (selectedIndex == 1) {
-        print("Search");
-      } else if (selectedIndex == 2) {
         print("Chart");
-      } else if (selectedIndex == 3) {
+      } else if (selectedIndex == 2) {
         print("Profile");
       }
     });
@@ -65,7 +62,6 @@ class _LearnerDashboardState extends State<LearnerDashboard> {
         child: LearnerBottomNavigationBar(
           items: const <LearnerBottomNavigationBarItem>[
             LearnerBottomNavigationBarItem(icon: Learner_ic_home_navigation),
-            LearnerBottomNavigationBarItem(icon: Learner_ic_search_navigation),
             LearnerBottomNavigationBarItem(icon: Learner_ic_chart_navigation),
             LearnerBottomNavigationBarItem(icon: Learner_ic_more_navigation),
           ],
