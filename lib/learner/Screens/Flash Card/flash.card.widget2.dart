@@ -1,6 +1,5 @@
 library flash_card;
 
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -188,7 +187,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
         isFrontVisible = false;
       });
 
-      Timer(Duration(seconds: 10), _turnBack);
+      // Timer(Duration(seconds: 10), _turnBack);
     } else {
       _controller.reverse();
       setState(() {
@@ -197,19 +196,6 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
     }
   }
 
-  void _turnBack() {
-    if (isFrontVisible) {
-      _controller.forward();
-      setState(() {
-        isFrontVisible = false;
-      });
-    } else {
-      _controller.reverse();
-      setState(() {
-        isFrontVisible = true;
-      });
-    }
-  }
 
   static get pronoun {
     List pronoun = [
@@ -391,7 +377,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
         ),
       ),
       body: Stack(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        clipBehavior: Clip.hardEdge,
         children: [
           Positioned(
               top: 20.0,
@@ -414,7 +400,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                           if (isFrontVisible) {
                             _controller.forward();
                             isFrontVisible = false;
-                            Timer(Duration(seconds: 10), _turnBack);
+                            // Timer(Duration(seconds: 10), _turnBack);
                           } else {
                             _controller.reverse();
                             isFrontVisible = true;
@@ -491,7 +477,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                           if (isFrontVisible) {
                             _controller.forward();
                             isFrontVisible = false;
-                            Timer(Duration(seconds: 10), _turnBack);
+                            // Timer(Duration(seconds: 10), _turnBack);
                           } else {
                             _controller.reverse();
                             isFrontVisible = true;

@@ -23,7 +23,7 @@ class LearnerWalkThrough extends StatefulWidget {
 
 class _LearnerWalkThroughState extends State<LearnerWalkThrough> {
   final auth = FirebaseAuth.instance;
-  late User user;
+  late User? user;
 
   //add splash screen
   startTime() async {
@@ -32,8 +32,8 @@ class _LearnerWalkThroughState extends State<LearnerWalkThrough> {
   }
 
   void navigationPage() {
-    user = auth.currentUser!;
-    if (user.emailVerified) {
+    user = auth.currentUser;
+    if (user!.emailVerified) {
       Navigator.pushNamed(context, '/alfatihah');
     }
   }
