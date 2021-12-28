@@ -112,6 +112,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/eats/3.0x/
+    - assets/eats/3.0x/rice.png
     - assets/fruits/
     - assets/fruits/Apple.riv
     - assets/paypal.png

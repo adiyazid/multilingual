@@ -158,12 +158,12 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
 
   static get image {
     List image = [
-      'assets/png/animal/bear.png',
-      'assets/png/animal/camel.png',
+      'assets/eats/3.0x/rice.png',
+      'assets/eats/3.0x/bread.png',
       'assets/png/animal/cat.png',
+      'assets/eats/3.0x/chicken.png',
+      'assets/eats/3.0x/fish.png',
       'assets/png/animal/chicken.png',
-      'assets/png/animal/cow.png',
-      'assets/png/animal/dog.png',
       'assets/png/animal/elephent.png',
       'assets/png/animal/horse.png',
       'assets/png/animal/lion.png',
@@ -213,18 +213,24 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
             frontWidget: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadiusDirectional.circular(20),
-                    color: Colors.white),
+                    color: Color(0XFFB0E4FF)),
                 height: 500,
                 width: 500,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(flex: 5, child: Image.asset(image[index])),
-                      SizedBox(height: 15),
-                      Expanded(
-                        flex: 3,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 68.0),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Image(
+                            filterQuality: FilterQuality.high,
+                            image: AssetImage(image[index])),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 250.0),
+                      child: Align(
+                        alignment: Alignment.center,
                         child: Directionality(
                           textDirection: TextDirection.rtl,
                           child: Text.rich(TextSpan(
@@ -251,39 +257,38 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
                               ])),
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Expanded(
-                        flex: 3,
-                        child: Text.rich(TextSpan(
-                            text: pronoun[index],
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                            children: [
-                              TextSpan(
-                                text: words[index],
-                                style: TextStyle(
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30),
-                              ),
-                              TextSpan(
-                                text: foods[index],
-                                style: TextStyle(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30),
-                              )
-                            ])),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Text.rich(TextSpan(
+                          text: pronoun[index],
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 35),
+                          children: [
+                            TextSpan(
+                              text: words[index],
+                              style: TextStyle(
+                                  color: Colors.indigo,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 35),
+                            ),
+                            TextSpan(
+                              text: foods[index],
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 35),
+                            )
+                          ])),
+                    ),
+                  ],
                 )),
             backWidget: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadiusDirectional.circular(5),
-                  color: Colors.yellowAccent),
+                  color: Color(0XffBFE6C8)),
               height: 500,
               width: 500,
               child: Column(
@@ -331,6 +336,6 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
               ),
             ),
             width: 400,
-            height: 400,
+            height: 500,
           ));
 }

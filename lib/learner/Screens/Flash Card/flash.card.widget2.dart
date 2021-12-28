@@ -273,6 +273,26 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
     return foods;
   }
 
+  static get image {
+    List image = [
+      'assets/eats/3.0x/rice.png',
+      'assets/eats/3.0x/bread.png',
+      'assets/png/animal/cat.png',
+      'assets/eats/3.0x/chicken.png',
+      'assets/eats/3.0x/fish.png',
+      'assets/png/animal/chicken.png',
+      'assets/png/animal/elephent.png',
+      'assets/png/animal/horse.png',
+      'assets/png/animal/lion.png',
+      'assets/png/animal/sheep.png',
+      'assets/png/animal/whale.png',
+      'assets/png/occupation/architek.png',
+      'assets/png/occupation/chef.png',
+      'assets/png/occupation/doctor.png',
+    ];
+    return image;
+  }
+
   static get person {
     List person = [
       '(A male)',
@@ -648,75 +668,70 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                     height: 500,
                     width: 500,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: (artboard != null)
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                    flex: 5,
-                                    child: Rive(
-                                      artboard: artboard!,
-                                      fit: BoxFit.cover,
-                                    )),
-                                Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: Text.rich(TextSpan(
-                                      text: arabPronoun[i],
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 45),
-                                      children: [
-                                        TextSpan(
-                                          text: arabWords[i],
-                                          style: TextStyle(
-                                              color: Colors.indigo,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 45),
-                                        ),
-                                        TextSpan(
-                                          text: arabFoods[i],
-                                          style: TextStyle(
-                                              color: Colors.green,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 45),
-                                        )
-                                      ])),
-                                ),
-                                SizedBox(height: 15),
-                                Text.rich(TextSpan(
-                                    text: pronoun[i],
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Image(
+                                  filterQuality: FilterQuality.high,
+                                  image: AssetImage(image[i])),
+                            ),
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Text.rich(TextSpan(
+                                    text: arabPronoun[i],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 30),
+                                        fontSize: 45),
                                     children: [
                                       TextSpan(
-                                        text: words[i],
+                                        text: arabWords[i],
                                         style: TextStyle(
                                             color: Colors.indigo,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 30),
+                                            fontSize: 45),
                                       ),
                                       TextSpan(
-                                        text: foods[i],
+                                        text: arabFoods[i],
                                         style: TextStyle(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 30),
+                                            fontSize: 45),
                                       )
                                     ])),
-                              ],
-                            )
-                          : Center(
-                              child: Text(
-                                'Eat',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 40),
                               ),
                             ),
-                    )),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text.rich(TextSpan(
+                                  text: pronoun[i],
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 35),
+                                  children: [
+                                    TextSpan(
+                                      text: words[i],
+                                      style: TextStyle(
+                                          color: Colors.indigo,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35),
+                                    ),
+                                    TextSpan(
+                                      text: foods[i],
+                                      style: TextStyle(
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35),
+                                    )
+                                  ])),
+                            ),
+                          ],
+                        ))),
                 width: 400,
                 height: 400,
               ),
