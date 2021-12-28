@@ -677,6 +677,7 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                                   filterQuality: FilterQuality.high,
                                   image: AssetImage(image[i])),
                             ),
+
                             Align(
                               alignment: Alignment.topCenter,
                               child: Directionality(
