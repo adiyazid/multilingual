@@ -27,6 +27,11 @@ List<LearnerCategoryModel> learnerGetCategories() {
   category.img = learner_ic_bag;
   category.name = "Flash Card Design 1";
   category.path = '/flashcard';
+
+  var category2 = LearnerCategoryModel();
+  category2.img = learner_ic_pencil_scale;
+  category2.name = "Flash Card Design 2";
+  category2.path = '/flashcard2';
 /*
   var category2 = LearnerCategoryModel();
   category2.img = learner_ic_pencil_scale;
@@ -58,6 +63,7 @@ List<LearnerCategoryModel> learnerGetCategories() {
   category8.name = "Medals";
 */
   list.add(category);
+  list.add(category2);
   /* list.add(category2);
   list.add(category3);
   list.add(category4);

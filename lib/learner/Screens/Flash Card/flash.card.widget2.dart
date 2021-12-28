@@ -4,8 +4,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:rive/rive.dart';
 
 /// UI flash card, commonly found in language teaching to children
 class FlashCardScreen2 extends StatefulWidget {
@@ -46,110 +44,111 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
 
   /// state of card is front or back
   bool isFrontVisible = true;
-  Artboard? artboard;
-  RiveAnimationController? controller1,
-      controller2,
-      controller3,
-      controller4,
-      controller5,
-      controller6,
-      controller7,
-      controller8,
-      controller9,
-      controller10,
-      controller11,
-      controller12,
-      controller13,
-      controller14;
 
-  late final artboard1,
-      artboard2,
-      artboard3,
-      artboard4,
-      artboard5,
-      artboard6,
-      artboard7,
-      artboard8,
-      artboard9,
-      artboard10,
-      artboard11,
-      artboard12,
-      artboard13,
-      artboard14;
+  // Artboard? artboard;
+  // RiveAnimationController? controller1,
+  //     controller2,
+  //     controller3,
+  //     controller4,
+  //     controller5,
+  //     controller6,
+  //     controller7,
+  //     controller8,
+  //     controller9,
+  //     controller10,
+  //     controller11,
+  //     controller12,
+  //     controller13,
+  //     controller14;
+  //
+  // late final artboard1,
+  //     artboard2,
+  //     artboard3,
+  //     artboard4,
+  //     artboard5,
+  //     artboard6,
+  //     artboard7,
+  //     artboard8,
+  //     artboard9,
+  //     artboard10,
+  //     artboard11,
+  //     artboard12,
+  //     artboard13,
+  //     artboard14;
 
   @override
   void initState() {
     super.initState();
-    rootBundle.load("fruits/Papaya.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard1 = file.mainArtboard;
-      artboard1.addController(controller1 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Pear.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard2 = file.mainArtboard;
-      artboard2.addController(controller2 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Grape.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard3 = file.mainArtboard;
-      artboard3.addController(controller3 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Durian.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard4 = file.mainArtboard;
-      artboard4.addController(controller4 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Mango.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard5 = file.mainArtboard;
-      artboard5.addController(controller5 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Pineapple.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard6 = file.mainArtboard;
-      artboard6.addController(controller6 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Apple.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard7 = file.mainArtboard;
-      artboard7.addController(controller7 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Orange.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard8 = file.mainArtboard;
-      artboard8.addController(controller8 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Banana.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard9 = file.mainArtboard;
-      artboard9.addController(controller9 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Strawberry.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard10 = file.mainArtboard;
-      artboard10.addController(controller10 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Watermelon.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard11 = file.mainArtboard;
-      artboard11.addController(controller11 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Watermelon.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard12 = file.mainArtboard;
-      artboard12.addController(controller12 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Watermelon.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard13 = file.mainArtboard;
-      artboard13.addController(controller13 = SimpleAnimation("splash"));
-    });
-    rootBundle.load("fruits/Watermelon.riv").then((data) {
-      final file = RiveFile.import(data);
-      artboard14 = file.mainArtboard;
-      artboard14.addController(controller14 = SimpleAnimation("splash"));
-    });
+    // rootBundle.load("fruits/Papaya.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard1 = file.mainArtboard;
+    //   artboard1.addController(controller1 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Pear.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard2 = file.mainArtboard;
+    //   artboard2.addController(controller2 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Grape.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard3 = file.mainArtboard;
+    //   artboard3.addController(controller3 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Durian.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard4 = file.mainArtboard;
+    //   artboard4.addController(controller4 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Mango.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard5 = file.mainArtboard;
+    //   artboard5.addController(controller5 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Pineapple.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard6 = file.mainArtboard;
+    //   artboard6.addController(controller6 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Apple.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard7 = file.mainArtboard;
+    //   artboard7.addController(controller7 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Orange.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard8 = file.mainArtboard;
+    //   artboard8.addController(controller8 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Banana.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard9 = file.mainArtboard;
+    //   artboard9.addController(controller9 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Strawberry.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard10 = file.mainArtboard;
+    //   artboard10.addController(controller10 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Watermelon.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard11 = file.mainArtboard;
+    //   artboard11.addController(controller11 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Watermelon.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard12 = file.mainArtboard;
+    //   artboard12.addController(controller12 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Watermelon.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard13 = file.mainArtboard;
+    //   artboard13.addController(controller13 = SimpleAnimation("splash"));
+    // });
+    // rootBundle.load("fruits/Watermelon.riv").then((data) {
+    //   final file = RiveFile.import(data);
+    //   artboard14 = file.mainArtboard;
+    //   artboard14.addController(controller14 = SimpleAnimation("splash"));
+    // });
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _frontAnimation = TweenSequence(
       <TweenSequenceItem<double>>[
@@ -273,6 +272,26 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
     return foods;
   }
 
+  static get image {
+    List image = [
+      'assets/eats/3.0x/rice.png',
+      'eats/3.0x/bread.png',
+      'eats/3.0x/grape.png',
+      'eats/3.0x/chicken.png',
+      'eats/3.0x/fish.png',
+      'eats/3.0x/pineapple.png',
+      'eats/3.0x/apple.png',
+      'eats/3.0x/orange.png',
+      'eats/3.0x/bananas.png',
+      'eats/3.0x/pasta.png',
+      'eats/3.0x/eggs.png',
+      'eats/3.0x/watermelon.png',
+      'eats/3.0x/salad.png',
+      'eats/3.0x/potato.png',
+    ];
+    return image;
+  }
+
   static get person {
     List person = [
       '(A male)',
@@ -392,41 +411,6 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                         onTap: () {
                           setState(() {
                             i = index;
-                            if (i == 0) {
-                              setState(() {
-                                artboard = artboard1;
-                              });
-                            }
-                            if (i == 1) {
-                              setState(() {
-                                artboard = artboard2;
-                              });
-                            }
-                            if (i == 2) {
-                              setState(() {
-                                artboard = artboard3;
-                              });
-                            }
-                            if (i == 3) {
-                              setState(() {
-                                artboard = artboard4;
-                              });
-                            }
-                            if (i == 4) {
-                              setState(() {
-                                artboard = artboard5;
-                              });
-                            }
-                            if (i == 5) {
-                              setState(() {
-                                artboard = artboard6;
-                              });
-                            }
-                            if (i == 6) {
-                              setState(() {
-                                artboard = artboard7;
-                              });
-                            }
                           });
                           if (isFrontVisible) {
                             _controller.forward();
@@ -504,41 +488,6 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                         onTap: () {
                           setState(() {
                             i = index + 7;
-                            if (i == 7) {
-                              setState(() {
-                                artboard = artboard8;
-                              });
-                            }
-                            if (i == 8) {
-                              setState(() {
-                                artboard = artboard9;
-                              });
-                            }
-                            if (i == 9) {
-                              setState(() {
-                                artboard = artboard10;
-                              });
-                            }
-                            if (i == 10) {
-                              setState(() {
-                                artboard = artboard11;
-                              });
-                            }
-                            if (i == 11) {
-                              setState(() {
-                                artboard = artboard12;
-                              });
-                            }
-                            if (i == 12) {
-                              setState(() {
-                                artboard = artboard13;
-                              });
-                            }
-                            if (i == 13) {
-                              setState(() {
-                                artboard = artboard14;
-                              });
-                            }
                           });
                           if (isFrontVisible) {
                             _controller.forward();
@@ -648,75 +597,70 @@ class _FlashCardScreen2State extends State<FlashCardScreen2>
                     height: 500,
                     width: 500,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: (artboard != null)
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                    flex: 5,
-                                    child: Rive(
-                                      artboard: artboard!,
-                                      fit: BoxFit.cover,
-                                    )),
-                                Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: Text.rich(TextSpan(
-                                      text: arabPronoun[i],
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 45),
-                                      children: [
-                                        TextSpan(
-                                          text: arabWords[i],
-                                          style: TextStyle(
-                                              color: Colors.indigo,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 45),
-                                        ),
-                                        TextSpan(
-                                          text: arabFoods[i],
-                                          style: TextStyle(
-                                              color: Colors.green,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 45),
-                                        )
-                                      ])),
-                                ),
-                                SizedBox(height: 15),
-                                Text.rich(TextSpan(
-                                    text: pronoun[i],
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Image(
+                                  filterQuality: FilterQuality.high,
+                                  image: AssetImage(image[i])),
+                            ),
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Text.rich(TextSpan(
+                                    text: arabPronoun[i],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 30),
+                                        fontSize: 45),
                                     children: [
                                       TextSpan(
-                                        text: words[i],
+                                        text: arabWords[i],
                                         style: TextStyle(
                                             color: Colors.indigo,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 30),
+                                            fontSize: 45),
                                       ),
                                       TextSpan(
-                                        text: foods[i],
+                                        text: arabFoods[i],
                                         style: TextStyle(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 30),
+                                            fontSize: 45),
                                       )
                                     ])),
-                              ],
-                            )
-                          : Center(
-                              child: Text(
-                                'Eat',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 40),
                               ),
                             ),
-                    )),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text.rich(TextSpan(
+                                  text: pronoun[i],
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 35),
+                                  children: [
+                                    TextSpan(
+                                      text: words[i],
+                                      style: TextStyle(
+                                          color: Colors.indigo,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35),
+                                    ),
+                                    TextSpan(
+                                      text: foods[i],
+                                      style: TextStyle(
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35),
+                                    )
+                                  ])),
+                            ),
+                          ],
+                        ))),
                 width: 400,
                 height: 400,
               ),

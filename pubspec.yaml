@@ -82,7 +82,7 @@ dependencies:
   lint: ^1.5.3
   image_picker: ^0.8.4+4
   permission_handler: ^8.3.0
-
+  firebase_analytics: ^9.0.4
   #clustering_google_maps: ^0.1.2
   #image_picker_gallery_camera: 0.1.6
 
@@ -114,6 +114,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/eats/3.0x/
+    - assets/eats/3.0x/bread.png
     - assets/fruits/
     - assets/fruits/Apple.riv
     - assets/paypal.png
