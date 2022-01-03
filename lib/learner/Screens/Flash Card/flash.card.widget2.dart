@@ -16,6 +16,8 @@ class FlashCardScreen2 extends StatefulWidget {
       : super(key: key);
   final String title;
 
+
+
   /// flip time
   final Duration duration;
 
